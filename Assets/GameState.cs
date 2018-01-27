@@ -5,12 +5,15 @@ using UnityEngine;
 public class GameState : MonoBehaviour {
 
     public bool firstPersonInfected = false;
-    public bool FirstPersonInfected
-    {
-        get;
-    }
+    public bool FirstPersonInfected { get; }
 
     public void InfectFirstPerson() {
         firstPersonInfected = true;
+    }
+
+    public bool bombTriggered = false;
+
+    public void TriggerBomb() {
+        bombTriggered = true;
     }
 }
