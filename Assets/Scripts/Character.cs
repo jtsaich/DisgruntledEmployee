@@ -6,16 +6,18 @@ using Assets.UltimateIsometricToolkit.Scripts.Core;
 public class Character: MonoBehaviour {
 	public GameObject AreaOfEffectPrefab;
 	public float moveSpeed = 2f;
-	public int nextPoint = 0;
-	public float infectRadius = 0;
+	public float infectRadius = 5f;
+	public float infectShrink = 0.01f;
+	public bool infected = false;
 
+	private int nextPoint = 0;
 	private Vector3[] path;
     private IsoTransform _isoTransform;
 	private GameObject aoeGO = null;
 	private AreaOfEffect aoeScript;
 
     void Awake() {
-        _isoTransform = this.GetOrAddComponent<IsoTransform>(); //avoids polling the IsoTransform component per frame
+        _isoTransform = this.GetOrAddComponent<IsoTransform>();
     }
 
 	void Start() {
@@ -23,8 +25,8 @@ public class Character: MonoBehaviour {
 		//nextPoint = Mathf.RoundToInt(Random.Range(0f, path.Length - 1));
 		_isoTransform.Position = path[nextPoint];
 
-		if (infectRadius > 0f) {
-			this.Infect(infectRadius);
+		if (infected) {
+			this.Infect(true);
 		}
 	}
 
@@ -36,14 +38,15 @@ public class Character: MonoBehaviour {
 		}
 	}
 
-	public void Infect(float radius) {
-		infectRadius = radius;
-
-		aoeGO = GameObject.Instantiate(AreaOfEffectPrefab);
-		aoeScript = aoeGO.GetComponent<AreaOfEffect>();
-		aoeScript.UpdateScale(radius);
-		aoeGO.transform.parent = this.transform;
-		aoeGO.transform.localPosition = new Vector3(0, -0.5f, 0);
+	public void Infect(bool force=false) {
+		if (force || !infected) {
+			infected = true;
+			aoeGO = GameObject.Instantiate(AreaOfEffectPrefab);
+			aoeScript = aoeGO.GetComponent<AreaOfEffect>();
+			aoeScript.Initialize(infectRadius, infectShrink);
+			aoeGO.transform.parent = this.transform;
+			aoeGO.transform.localPosition = new Vector3(0, -0.5f, 0);
+		}
 	}
 
 	void OnDestroy() {
