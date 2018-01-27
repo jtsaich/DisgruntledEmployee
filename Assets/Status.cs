@@ -12,14 +12,10 @@ public class Status : MonoBehaviour {
         if (!infected)
         {
             infected = true;
-            GameObject infectedGameObject = Instantiate(infectedPrefab, transform) as GameObject;
+            GameObject aoe = Instantiate(infectedPrefab, transform.parent) as GameObject;
+            aoe.SetActive(true);
         }
     }
-
-	// Use this for initialization
-	void Start () {
-		
-	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -31,17 +27,17 @@ public class Status : MonoBehaviour {
             if (Physics.Raycast(ray, out hit))
             {
                 Debug.Log("hit " + hit.transform.tag);
-                if (hit.transform.tag == "Person")
+                if (hit.transform == transform)
                 {
-                    GameState gameState = GameObject.Find("GameState").GetComponent("GameState");
+                    GameState gameState = GameObject.Find("GameState").GetComponent("GameState") as GameState;
                     if (gameState == null)
                     {
                         Debug.Log("Cannot find GameState in scene");
                     }
 
-                    if (gameState != null && gameState.FirstPersonInfected)
+                    if (gameState != null && !gameState.FirstPersonInfected)
                     {
-                        GameObject.Find("GameState").GetComponent("GameState").SendMessage("InfectFirstPerson");
+                        gameState.SendMessage("InfectFirstPerson");
                         SendMessage("Infect");
                     }
                 }

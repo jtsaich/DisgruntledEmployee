@@ -6,24 +6,21 @@ public class AreaOfEffect : MonoBehaviour {
 
     public float shrinkRate = 0.01F;
 
-	// Use this for initialization
-	void Start () {
-        
-	}
-	
-	// Update is called once per frame
 	void Update () {
-        transform.localScale -= new Vector3(shrinkRate, 0, shrinkRate);
-        if (transform.localScale.x < 0)
-        {
-            Destroy(gameObject);
-        }
+		if (shrinkRate > float.Epsilon) {
+			transform.localScale -= new Vector3(shrinkRate, shrinkRate, 0);
+			if (transform.localScale.x < 0) {
+				Destroy(gameObject);
+			}
+		}
 	}
 
-    void OnCollisionEnter (Collision collision) {
-        if (collision.gameObject.tag == "Person")
+    void OnTriggerEnter(Collider collider) {
+        if (collider.gameObject.tag == "CharacterHitBox")
         {
-            collision.gameObject.SendMessage("Infect");
+            collider.gameObject.SendMessage("Infect");
         }
+
+		Debug.Log("Collided with " + collider.gameObject.tag);
     }
 }

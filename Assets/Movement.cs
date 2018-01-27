@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement : MonoBehaviour {
-
-	public Vector3[] path = { new Vector3(0,0,0), new Vector3(5,0,0), new Vector3(5,5,0) };
 	public float moveSpeed = 5f;
 	public int nextPoint = 0;
+	private Vector3[] path;
 
-	// Update is called once per frame
+	void Start() {
+		path = GetComponentInParent<CharacterPath>().path;
+		nextPoint = Mathf.RoundToInt(Random.Range(0f, path.Length - 1));
+	}
+
 	void Update () {
 		transform.position = (Vector3) Vector2.MoveTowards((Vector2) transform.position, (Vector2) path[nextPoint], moveSpeed * Time.deltaTime);
 
