@@ -30,9 +30,20 @@ public class Status : MonoBehaviour {
 
             if (Physics.Raycast(ray, out hit))
             {
+                Debug.Log("hit " + hit.transform.tag);
                 if (hit.transform.tag == "Person")
                 {
-                    SendMessage("Infect");
+                    GameState gameState = GameObject.Find("GameState").GetComponent("GameState");
+                    if (gameState == null)
+                    {
+                        Debug.Log("Cannot find GameState in scene");
+                    }
+
+                    if (gameState != null && gameState.FirstPersonInfected)
+                    {
+                        GameObject.Find("GameState").GetComponent("GameState").SendMessage("InfectFirstPerson");
+                        SendMessage("Infect");
+                    }
                 }
             }
         }
