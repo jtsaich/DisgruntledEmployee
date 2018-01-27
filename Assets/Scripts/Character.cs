@@ -7,13 +7,12 @@ public class Character: MonoBehaviour {
 	public GameObject AreaOfEffectPrefab;
 	public float moveSpeed = 2f;
 	public int nextPoint = 0;
-	private Vector3[] path;
+	public float infectRadius = 0;
 
+	private Vector3[] path;
     private IsoTransform _isoTransform;
-	private float infectRadius = 0;
 	private GameObject aoeGO = null;
-	AreaOfEffect aoeScript;
-	private bool first = true;
+	private AreaOfEffect aoeScript;
 
     void Awake() {
         _isoTransform = this.GetOrAddComponent<IsoTransform>(); //avoids polling the IsoTransform component per frame
@@ -23,6 +22,10 @@ public class Character: MonoBehaviour {
 		path = GetComponentInParent<CharacterPath>().path;
 		//nextPoint = Mathf.RoundToInt(Random.Range(0f, path.Length - 1));
 		_isoTransform.Position = path[nextPoint];
+
+		if (infectRadius > 0f) {
+			this.Infect(infectRadius);
+		}
 	}
 
 	void Update () {
@@ -31,11 +34,6 @@ public class Character: MonoBehaviour {
         if (_isoTransform.Position == path[nextPoint]) {
 			nextPoint = (nextPoint + 1) % path.Length;
 		}
-
-		if (first) {
-			first = false;
-			this.Infect(10);
-		}
 	}
 
 	public void Infect(float radius) {
@@ -43,7 +41,7 @@ public class Character: MonoBehaviour {
 
 		aoeGO = GameObject.Instantiate(AreaOfEffectPrefab);
 		aoeScript = aoeGO.GetComponent<AreaOfEffect>();
-		aoeScript.startScale = radius;
+		aoeScript.UpdateScale(radius);
 		aoeGO.transform.parent = this.transform;
 		aoeGO.transform.localPosition = new Vector3(0, -0.5f, 0);
 	}
