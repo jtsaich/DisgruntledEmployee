@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class AreaOfEffect : MonoBehaviour {
 
-    public float shrinkRate = 0.01F;
-	public float startScale = 5;
+    public float shrinkRate;
+	public float startScale;
 
 	void Start() {
 		transform.localScale = new Vector3(startScale * 2, startScale, 1);

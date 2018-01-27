@@ -8,8 +8,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 411302}
-  - component: {fileID: 21281432}
   - component: {fileID: 11491626}
+  - component: {fileID: 21281432}
   m_Layer: 0
   m_Name: g4768
   m_TagString: Untagged
@@ -19,7 +19,7 @@ GameObject:
   m_IsActive: 1
 --- !u!4 &411302
 Transform:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 109726}
