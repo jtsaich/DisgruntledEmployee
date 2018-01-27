@@ -5,10 +5,19 @@ using UnityEngine;
 public class AreaOfEffect : MonoBehaviour {
 
     public float shrinkRate = 0.01F;
+	public float startScale = 5;
+
+	void Start() {
+		transform.localScale = new Vector3(startScale * 2, startScale, 1);
+	}
+
+	public void UpdateScale(float scale) {
+		transform.localScale = new Vector3(scale * 2, scale, 1);
+	}
 
 	void Update () {
 		if (shrinkRate > float.Epsilon) {
-			transform.localScale -= new Vector3(shrinkRate, shrinkRate, 0);
+			transform.localScale -= new Vector3(shrinkRate * 2, shrinkRate, 0);
 			if (transform.localScale.x < 0) {
 				Destroy(gameObject);
 			}
@@ -16,8 +25,7 @@ public class AreaOfEffect : MonoBehaviour {
 	}
 
     void OnTriggerEnter(Collider collider) {
-        if (collider.gameObject.tag == "CharacterHitBox")
-        {
+        if (collider.gameObject.tag == "CharacterHitBox") {
             collider.gameObject.SendMessage("Infect");
         }
 
