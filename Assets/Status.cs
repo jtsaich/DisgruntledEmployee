@@ -7,6 +7,15 @@ public class Status : MonoBehaviour {
     public bool infected;
     public GameObject infectedPrefab;
 
+
+    public void Infect() {
+        if (!infected)
+        {
+            infected = true;
+            GameObject infectedGameObject = Instantiate(infectedPrefab, transform) as GameObject;
+        }
+    }
+
 	// Use this for initialization
 	void Start () {
 		
@@ -23,8 +32,7 @@ public class Status : MonoBehaviour {
             {
                 if (hit.transform.tag == "Person")
                 {
-                    infected = true;
-                    GameObject infectedGameObject = Instantiate(infectedPrefab, transform) as GameObject;
+                    SendMessage("Infect");
                 }
             }
         }

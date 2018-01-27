@@ -21,6 +21,9 @@ public class AreaOfEffect : MonoBehaviour {
 	}
 
     void OnCollisionEnter (Collision collision) {
-        
+        if (collision.gameObject.tag == "Person")
+        {
+            collision.gameObject.SendMessage("Infect");
+        }
     }
 }
