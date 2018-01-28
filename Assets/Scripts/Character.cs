@@ -15,6 +15,7 @@ public class Character: MonoBehaviour {
 	private Vector3[] path;
     private IsoTransform _isoTransform;
     private GameState _gameState;
+	private SoundManager soundManager;
 	private GameObject aoeGO = null;
 	private AreaOfEffect aoeScript;
     private Blast _blast;
@@ -23,6 +24,7 @@ public class Character: MonoBehaviour {
     void Awake() {
         _isoTransform = this.GetOrAddComponent<IsoTransform>();
         _gameState = GameObject.Find("GameState").GetComponent<GameState>();
+		soundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
     }
 
 	void Start() {
@@ -33,6 +35,7 @@ public class Character: MonoBehaviour {
 		blastGO.SetActive(false);
 		//nextPoint = Mathf.RoundToInt(Random.Range(0f, path.Length - 1));
 		_isoTransform.Position = path[nextPoint];
+
 
 		if (infected) {
 			this.Infect(true);
@@ -101,7 +104,10 @@ public class Character: MonoBehaviour {
             foreach (GameObject gameObject in _blast.withinRadius) {
                 gameObject.GetComponent<Explodable>().Explode();
             }
-
+				
+			if (soundManager) {
+				soundManager.playExplosion();
+			}
 			Destroy(this.gameObject);
         }
     }
@@ -113,8 +119,8 @@ public class Character: MonoBehaviour {
 			aoeGO = null;
 		}
 		if (blastGO) {
-			blastGO = null;
 			Destroy(blastGO);
+			blastGO = null;
 		}
 	}
 }
