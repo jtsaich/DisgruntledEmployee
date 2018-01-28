@@ -42,6 +42,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Pathing test
+    uniqueID: 176947245
+    locked: 0
   - name: Background
     uniqueID: 4136554975
     locked: 0

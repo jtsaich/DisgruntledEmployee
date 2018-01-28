@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameState : MonoBehaviour {
 
     public bool firstCharacterInfected;
+	public Text text;
 
     public void InfectFirstCharacter() {
         firstCharacterInfected = true;
@@ -16,8 +18,22 @@ public class GameState : MonoBehaviour {
         this.lastCharacterInfected = lastCharacterInfected;
     }
 
-
+	private int damage = 0;
     public bool bombTriggered = false;
+
+
+	void Start() {
+		updateDamage(0);
+	}
+
+	public void addDamage(int damage) {
+		updateDamage(this.damage + damage);
+	}
+
+	void updateDamage(int damage) {
+		this.damage = damage;
+		text.text = "Damage: $" + this.damage;
+	}
 
     void Update () {
         if (lastCharacterInfected != null)
