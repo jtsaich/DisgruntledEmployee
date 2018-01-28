@@ -22,6 +22,9 @@ public class Character: MonoBehaviour {
     private Blast _blast;
     private GameObject blastGO;
 
+    private bool startDelayExplode = false;
+    private float delayExplode = 0;
+
     [SerializeField]
     private int _direction;
 
@@ -51,6 +54,16 @@ public class Character: MonoBehaviour {
 	}
 
 	void Update () {
+        if (startDelayExplode)
+        {
+            delayExplode -= Time.deltaTime;
+            if (delayExplode <= 0)
+            {
+                Explode();
+                return;
+            }
+        }
+
 		if (Input.GetKeyDown(KeyCode.I)) {
 			Infect(true);
 		}
@@ -128,6 +141,11 @@ public class Character: MonoBehaviour {
             }
 		}
 	}
+
+    public void DelayExplode(float time) {
+        startDelayExplode = true;
+        delayExplode = time;
+    }
 
     public void Explode() {
         if (infected)
