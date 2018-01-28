@@ -65,7 +65,7 @@ public class GameState : MonoBehaviour {
                     Character character = gameObject.GetComponent<Character>();
                     if (character != null && character.infected)
                     {
-                        character.DelayExplode(Random.Range(0, 1000) / 1000f);
+                        character.DelayExplode(Random.Range(0f, 1f));
                     }
                 }
             }
