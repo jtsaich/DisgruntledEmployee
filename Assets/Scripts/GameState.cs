@@ -32,7 +32,9 @@ public class GameState : MonoBehaviour {
 
 	void updateDamage(int damage) {
 		this.damage = damage;
-		text.text = "Damage: $" + this.damage;
+		if (text) {
+			text.text = "Damage: $" + this.damage;
+		}
 	}
 
     void Update () {
