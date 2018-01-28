@@ -54,8 +54,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dacb887888294d97be4a68439704ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shrinkRate: 0.01
-  startScale: 5
 --- !u!114 &114867831515450860
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -67,8 +65,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dacb887888294d97be4a68439704ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shrinkRate: 0
-  startScale: 5
 --- !u!135 &135101299347308246
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -116,7 +112,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: de02efff9fe4443d8a96f6c4018ac300, type: 3}
-  m_Color: {r: 0.9044118, g: 0.006650093, b: 0.61960435, a: 0.39215687}
+  m_Color: {r: 0.5190311, g: 0.8708189, b: 0.9411765, a: 0.39215687}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
