@@ -24,6 +24,8 @@ public class GameState : MonoBehaviour {
 	private int damage = 0;
     public bool bombTriggered = false;
 
+
+    [SerializeField]
     private GameObject _menu;
 
 
