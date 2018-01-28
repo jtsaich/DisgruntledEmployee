@@ -32,7 +32,7 @@ GameObject:
   m_IsActive: 1
 --- !u!4 &4143058828392934
 Transform:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1495406498898080}
@@ -87,7 +87,7 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: dc0ae91c56b9efd4c9ccc81953848439, type: 3}
   - {fileID: 21300002, guid: dc0ae91c56b9efd4c9ccc81953848439, type: 3}
-  spriteOffset: {x: 0, y: 0, z: 0}
+  worth: 500
 --- !u!135 &135205151009135732
 SphereCollider:
   m_ObjectHideFlags: 1
