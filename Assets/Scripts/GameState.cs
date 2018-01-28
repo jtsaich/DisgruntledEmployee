@@ -9,12 +9,14 @@ public class GameState : MonoBehaviour {
     public bool gameStarted;
 	public GameObject instructions;
 	public GameObject[] instructionPanes;
+	public GameObject shopperMessage;
 
     public bool firstCharacterInfected;
 	public Text text;
     public GameObject clickToReplay;
 
     public void InfectFirstCharacter() {
+		shopperMessage.SetActive(false);
         firstCharacterInfected = true;
     }
 
@@ -44,6 +46,7 @@ public class GameState : MonoBehaviour {
 
     public void StartGame() {
         gameStarted = true;
+		shopperMessage.SetActive(true);
         _menu.SetActive(false);
     }
 
