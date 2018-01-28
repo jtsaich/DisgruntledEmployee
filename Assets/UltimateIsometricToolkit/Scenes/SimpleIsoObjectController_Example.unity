@@ -293,7 +293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SortingStrategy: {fileID: 74415044}
-  Dirty: 0
+  Dirty: 1
   _isoAngle: 26.565
   _xRot: 35.625
   _yRot: 45
@@ -1439,6 +1439,48 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1c7c72e0ea9121a43b43a3021c4159d0, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &336119495
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4860194276091866, guid: a0a56f3a811d34fbb86b7f2d4088679f, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 1.4142134
+      objectReference: {fileID: 0}
+    - target: {fileID: 4860194276091866, guid: a0a56f3a811d34fbb86b7f2d4088679f, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.2267221
+      objectReference: {fileID: 0}
+    - target: {fileID: 4860194276091866, guid: a0a56f3a811d34fbb86b7f2d4088679f, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.9247449
+      objectReference: {fileID: 0}
+    - target: {fileID: 4860194276091866, guid: a0a56f3a811d34fbb86b7f2d4088679f, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4860194276091866, guid: a0a56f3a811d34fbb86b7f2d4088679f, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4860194276091866, guid: a0a56f3a811d34fbb86b7f2d4088679f, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4860194276091866, guid: a0a56f3a811d34fbb86b7f2d4088679f, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4860194276091866, guid: a0a56f3a811d34fbb86b7f2d4088679f, type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: a0a56f3a811d34fbb86b7f2d4088679f, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &341506248 stripped
 Transform:

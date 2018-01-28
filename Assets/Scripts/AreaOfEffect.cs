@@ -22,8 +22,10 @@ public class AreaOfEffect : MonoBehaviour {
 	}
 
     void OnTriggerEnter(Collider collider) {
-        if (collider.gameObject.tag == "CharacterHitBox") {
+		if (collider.gameObject.tag == "CharacterHitBox") {
 			collider.gameObject.GetComponent<Character>().Infect();
-        }
+		} else if (collider.gameObject.tag == "Explodable") {
+			collider.gameObject.GetComponent<Explodable>().Explode();
+		}
     }
 }
