@@ -28,7 +28,6 @@ public class GameState : MonoBehaviour {
     [SerializeField]
     private GameObject _menu;
 
-
 	void Start() {
         updateDamage(0);
         _menu = GameObject.Find("Menu");
@@ -66,7 +65,7 @@ public class GameState : MonoBehaviour {
                     Character character = gameObject.GetComponent<Character>();
                     if (character != null && character.infected)
                     {
-                        character.Explode();
+                        character.DelayExplode(Random.Range(0, 1000) / 1000f);
                     }
                 }
             }
