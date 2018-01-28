@@ -7,6 +7,8 @@ public class Character: MonoBehaviour {
 	public GameObject AreaOfEffectPrefab;
     public GameObject BlastPrefab;
 	public GameObject ExplosionPrefab;
+    public GameObject InfectedSignPrefab;
+
 	public float moveSpeed = 2f;
     public float infectDuration = 10f;
 	public float infectRadius = 5f;
@@ -21,6 +23,7 @@ public class Character: MonoBehaviour {
 	private AreaOfEffect aoeScript;
     private Blast _blast;
     private GameObject blastGO;
+    private GameObject infectedSign;
 
     private bool startDelayExplode = false;
     private float delayExplode = 0;
@@ -129,11 +132,18 @@ public class Character: MonoBehaviour {
 
 	public void Infect(bool force=false) {
 		if (force || !infected) {
+            infectedSign = Instantiate(InfectedSignPrefab, transform);
+
+
 			infected = true;
 			blastGO.SetActive(true);
             aoeGO = Instantiate(AreaOfEffectPrefab, transform);
 			aoeScript = aoeGO.GetComponent<AreaOfEffect>();
             aoeScript.Initialize(infectRadius, infectDuration);
+
+			if (soundManager) {
+				soundManager.playInfection();
+			}
 
             if (_gameState != null)
             {
@@ -174,5 +184,11 @@ public class Character: MonoBehaviour {
 			Destroy(blastGO);
 			blastGO = null;
 		}
+
+        if (infectedSign)
+        {
+            Destroy(infectedSign);
+            infectedSign = null;
+        }
 	}
 }

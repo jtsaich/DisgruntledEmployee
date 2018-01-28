@@ -7,9 +7,12 @@ using UnityEngine.SceneManagement;
 public class GameState : MonoBehaviour {
 
     public bool gameStarted;
+	public GameObject instructions;
+	public GameObject[] instructionPanes;
 
     public bool firstCharacterInfected;
 	public Text text;
+    public GameObject clickToReplay;
 
     public void InfectFirstCharacter() {
         firstCharacterInfected = true;
@@ -21,8 +24,14 @@ public class GameState : MonoBehaviour {
         this.lastCharacterInfected = lastCharacterInfected;
     }
 
+    [SerializeField]
 	private int damage = 0;
-    public bool bombTriggered = false;
+
+    [SerializeField]
+    private bool bombTriggered = false;
+
+    public float endGameAfterBombTriggered = 3.0f;
+
 
 
     [SerializeField]
@@ -38,6 +47,15 @@ public class GameState : MonoBehaviour {
         _menu.SetActive(false);
     }
 
+	public void ShowInstructionsPane(int pane = 0) {
+		instructions.SetActive(true);
+
+		for (int i = 0; i < instructionPanes.Length; i++) {
+			instructionPanes[i].SetActive(false);
+		}
+		instructionPanes[pane].SetActive(true);
+	}
+
 	public void addDamage(int damage) {
 		updateDamage(this.damage + damage);
 	}
@@ -50,9 +68,31 @@ public class GameState : MonoBehaviour {
 	}
 
     void Update () {
+
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            Application.Quit();
+        }
+
 		if (Input.GetKeyDown(KeyCode.R)) {
-			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            ResetScene();
 		}
+
+
+        if (endGameAfterBombTriggered <= 0)
+        {
+            clickToReplay.SetActive(true);
+            if (Input.GetMouseButtonDown(0))
+            {
+                ResetScene();
+            }
+        }
+
+        if (bombTriggered && endGameAfterBombTriggered > 0)
+        {
+            endGameAfterBombTriggered -= Time.deltaTime;
+        }
+
+
 		if (lastCharacterInfected != null && !bombTriggered)
         {
             if (lastCharacterInfected.GetComponent<Character>().infectDuration < 0)
@@ -71,5 +111,9 @@ public class GameState : MonoBehaviour {
             }
 
         }
+    }
+
+    public void ResetScene() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

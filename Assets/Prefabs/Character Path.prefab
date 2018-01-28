@@ -50,12 +50,12 @@ GameObject:
   m_IsActive: 1
 --- !u!4 &4794979429347038
 Transform:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1218075518263352}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.656854, y: 4.24264, z: 7.348469}
+  m_LocalPosition: {x: -57.97794, y: -25.905323, z: -0.683712}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4866481734121634}
@@ -67,8 +67,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1900546378733108}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.9220634, y: -18.344715, z: -25.773977}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4794979429347038}
@@ -131,10 +131,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path:
-  - {x: 10, y: 1, z: 10}
-  - {x: 0, y: 1, z: 10}
-  - {x: 10, y: 1, z: 0}
-  - {x: 0, y: 1, z: 10}
+  - {x: -17, y: 0, z: 28}
+  - {x: -6, y: 0, z: 28}
+  - {x: -6, y: 0, z: 13}
+  - {x: -24, y: 0, z: 13}
+  - {x: -24, y: 0, z: 21}
 --- !u!114 &114375789236900402
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -151,6 +152,8 @@ MonoBehaviour:
   BlastPrefab: {fileID: 1461706226355028, guid: fdeabcb422ae24f25ac36dad74421e96,
     type: 2}
   ExplosionPrefab: {fileID: 1967150045086366, guid: f6bde262119ee426584c9405a4e8d596,
+    type: 2}
+  InfectedSignPrefab: {fileID: 1792145816051014, guid: 98039bda019914956a9df3cdb3e09bdc,
     type: 2}
   moveSpeed: 5
   infectDuration: 5.5
@@ -169,7 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowBounds: 1
-  _position: {x: 2, y: 0, z: 10}
+  _position: {x: -0.15, y: 1, z: -0.15}
   _size: {x: 0.7, y: 1.2, z: 0.7}
   _parent: {fileID: 0}
 --- !u!212 &212641707585199216
