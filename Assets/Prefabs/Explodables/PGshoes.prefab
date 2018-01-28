@@ -72,7 +72,7 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 0c9b4ba5cf5d73442be4bb7b131364f1, type: 3}
   - {fileID: 21300002, guid: 0c9b4ba5cf5d73442be4bb7b131364f1, type: 3}
-  worth: 300
+  worth: 500
 --- !u!114 &114659536255177932
 MonoBehaviour:
   m_ObjectHideFlags: 1
