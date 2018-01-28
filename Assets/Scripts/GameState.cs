@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class GameState : MonoBehaviour {
 
+	private static bool quickStart = false;
+
     public bool gameStarted;
 	public GameObject instructions;
 	public GameObject[] instructionPanes;
@@ -42,6 +44,9 @@ public class GameState : MonoBehaviour {
 	void Start() {
         updateDamage(0);
         _menu = GameObject.Find("Menu");
+		if (GameState.quickStart) {
+			StartGame();
+		}
 	}
 
     public void StartGame() {
@@ -86,7 +91,7 @@ public class GameState : MonoBehaviour {
             clickToReplay.SetActive(true);
             if (Input.GetMouseButtonDown(0))
             {
-                ResetScene();
+                ResetScene(true);
             }
         }
 
@@ -116,7 +121,8 @@ public class GameState : MonoBehaviour {
         }
     }
 
-    public void ResetScene() {
+	public void ResetScene(bool quickStart=false) {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		GameState.quickStart = quickStart;
     }
 }
