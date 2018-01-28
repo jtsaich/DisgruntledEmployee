@@ -6,6 +6,7 @@ public class SoundManager : MonoBehaviour {
 
 	public GameObject explosionPrefab;
 	public GameObject musicPrefab;
+  //  public GameObject ambientPrefab;
 
 	private GameObject[] explosionGOs;
 	private AudioSource[] explosionSources;
@@ -26,7 +27,8 @@ public class SoundManager : MonoBehaviour {
 		}
 
 		musicGO = Instantiate(musicPrefab, transform);
-	}
+       // musicGO = Instantiate(ambientPrefab, transform);
+    }
 
 	public void playExplosion() {
 		explosionSources[nextExplosion].pitch = Random.Range(0.95f, 1.05f);

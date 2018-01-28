@@ -150,6 +150,8 @@ MonoBehaviour:
     type: 2}
   BlastPrefab: {fileID: 1461706226355028, guid: fdeabcb422ae24f25ac36dad74421e96,
     type: 2}
+  ExplosionPrefab: {fileID: 1967150045086366, guid: f6bde262119ee426584c9405a4e8d596,
+    type: 2}
   moveSpeed: 5
   infectDuration: 5.5
   infectRadius: 6.5
