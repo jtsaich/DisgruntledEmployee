@@ -21,8 +21,14 @@ public class GameState : MonoBehaviour {
         this.lastCharacterInfected = lastCharacterInfected;
     }
 
+    [SerializeField]
 	private int damage = 0;
-    public bool bombTriggered = false;
+
+    [SerializeField]
+    private bool bombTriggered = false;
+
+    public float endGameAfterBombTriggered = 3.0f;
+
 
 
     [SerializeField]
@@ -51,8 +57,18 @@ public class GameState : MonoBehaviour {
 
     void Update () {
 		if (Input.GetKeyDown(KeyCode.R)) {
-			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            ResetScene();
 		}
+
+        if (bombTriggered)
+        {
+            endGameAfterBombTriggered -= Time.deltaTime;
+            if (endGameAfterBombTriggered <= 0)
+            {
+                ResetScene();
+            }
+        }
+
 		if (lastCharacterInfected != null && !bombTriggered)
         {
             if (lastCharacterInfected.GetComponent<Character>().infectDuration < 0)
@@ -71,5 +87,9 @@ public class GameState : MonoBehaviour {
             }
 
         }
+    }
+
+    public void ResetScene() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
