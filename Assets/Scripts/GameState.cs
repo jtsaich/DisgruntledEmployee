@@ -38,22 +38,19 @@ public class GameState : MonoBehaviour {
 	}
 
     void Update () {
-        if (lastCharacterInfected != null)
+		if (lastCharacterInfected != null && !bombTriggered)
         {
             if (lastCharacterInfected.GetComponent<Character>().infectDuration < 0)
             {
-                if (!bombTriggered)
-                {
-                    bombTriggered = true;
-                    Debug.Log("BOOOOOOOOOM!");
+                bombTriggered = true;
+                Debug.Log("BOOOOOOOOOM!");
 
-                    GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("CharacterHitBox");
-                    foreach (GameObject gameObject in gameObjects) {
-                        Character character = gameObject.GetComponent<Character>();
-                        if (character != null && character.infected)
-                        {
-                            character.Explode();
-                        }
+                GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("CharacterHitBox");
+                foreach (GameObject gameObject in gameObjects) {
+                    Character character = gameObject.GetComponent<Character>();
+                    if (character != null && character.infected)
+                    {
+                        character.Explode();
                     }
                 }
             }

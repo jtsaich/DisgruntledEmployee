@@ -101,6 +101,8 @@ public class Character: MonoBehaviour {
             foreach (GameObject gameObject in _blast.withinRadius) {
                 gameObject.GetComponent<Explodable>().Explode();
             }
+
+			Destroy(this.gameObject);
         }
     }
         
