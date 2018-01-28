@@ -7931,7 +7931,7 @@ GameObject:
   m_IsActive: 1
 --- !u!4 &2067510363
 Transform:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2067510362}

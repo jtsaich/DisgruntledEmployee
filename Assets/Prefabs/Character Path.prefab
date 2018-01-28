@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 65918445980055878}
   - component: {fileID: 114375789236900402}
   - component: {fileID: 54627440458563816}
+  - component: {fileID: 95111581278293938}
   m_Layer: 0
   m_Name: Character
   m_TagString: CharacterHitBox
@@ -101,6 +102,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &95111581278293938
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1218075518263352}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0771bd4a84e794bf8beaa8b0b0ec82eb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114180577058457890
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -114,7 +132,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   path:
   - {x: 10, y: 1, z: 10}
+  - {x: 10, y: 1, z: 0}
   - {x: 0, y: 1, z: 0}
+  - {x: 0, y: 1, z: 10}
 --- !u!114 &114375789236900402
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -183,7 +203,7 @@ SpriteRenderer:
   m_SortingLayerID: 123014655
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300298, guid: a5994f41d8a85744d869f00e6828bb76, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 988a09868a3d14f44818f38d118c9e4f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
