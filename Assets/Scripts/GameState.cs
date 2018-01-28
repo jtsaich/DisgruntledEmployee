@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class GameState : MonoBehaviour {
 
+    public bool gameStarted;
+
     public bool firstCharacterInfected;
 	public Text text;
 
@@ -23,9 +25,19 @@ public class GameState : MonoBehaviour {
     public bool bombTriggered = false;
 
 
+    [SerializeField]
+    private GameObject _menu;
+
+
 	void Start() {
-		updateDamage(0);
+        updateDamage(0);
+        _menu = GameObject.Find("Menu");
 	}
+
+    public void StartGame() {
+        gameStarted = true;
+        _menu.SetActive(false);
+    }
 
 	public void addDamage(int damage) {
 		updateDamage(this.damage + damage);
