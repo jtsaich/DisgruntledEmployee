@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameState : MonoBehaviour {
 
@@ -38,6 +39,9 @@ public class GameState : MonoBehaviour {
 	}
 
     void Update () {
+		if (Input.GetKeyDown(KeyCode.R)) {
+			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		}
 		if (lastCharacterInfected != null && !bombTriggered)
         {
             if (lastCharacterInfected.GetComponent<Character>().infectDuration < 0)
