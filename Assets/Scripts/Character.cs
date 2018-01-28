@@ -6,6 +6,7 @@ using Assets.UltimateIsometricToolkit.Scripts.Core;
 public class Character: MonoBehaviour {
 	public GameObject AreaOfEffectPrefab;
     public GameObject BlastPrefab;
+	public GameObject ExplosionPrefab;
 	public float moveSpeed = 2f;
     public float infectDuration = 10f;
 	public float infectRadius = 5f;
@@ -134,6 +135,9 @@ public class Character: MonoBehaviour {
             foreach (GameObject gameObject in _blast.withinRadius) {
                 gameObject.GetComponent<Explodable>().Explode();
             }
+
+			GameObject go = Instantiate(ExplosionPrefab);
+			go.transform.position = transform.position;
 				
 			if (soundManager) {
 				soundManager.playExplosion();

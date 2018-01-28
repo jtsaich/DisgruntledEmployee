@@ -33,4 +33,15 @@ public class SoundManager : MonoBehaviour {
 		explosionSources[nextExplosion].Play();
 		nextExplosion = (nextExplosion + 1) % numExplosions;
 	}
+
+	void onDestroy() {
+		if (musicGO) {
+			Destroy(musicGO);
+		}
+		if (explosionGOs != null) {
+			for (int i = 0; i < explosionGOs.Length; i++) {
+				Destroy(explosionGOs[i]);
+			}
+		}
+	}
 }
