@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114375789236900402}
   m_Layer: 0
   m_Name: Character
-  m_TagString: Untagged
+  m_TagString: CharacterHitBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,7 +48,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1900546378733108
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,8 +130,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dacb887888294d97be4a68439704ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shrinkRate: 0
-  startScale: 5
 --- !u!114 &114180577058457890
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -144,8 +142,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path:
-  - {x: 0, y: 0, z: 0}
-  - {x: 5, y: 0, z: 5}
+  - {x: 0, y: 1, z: 0}
+  - {x: 10, y: 1, z: 10}
 --- !u!114 &114375789236900402
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -160,8 +158,9 @@ MonoBehaviour:
   AreaOfEffectPrefab: {fileID: 1643891861869326, guid: b1effb2e8c0584029b7c2b766bad763c,
     type: 2}
   moveSpeed: 5
-  nextPoint: 0
   infectRadius: 5
+  infectShrink: 0.01
+  infected: 0
 --- !u!114 &114720958741956180
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -173,8 +172,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dacb887888294d97be4a68439704ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shrinkRate: 0.01
-  startScale: 5
 --- !u!114 &114910991218591770
 MonoBehaviour:
   m_ObjectHideFlags: 1

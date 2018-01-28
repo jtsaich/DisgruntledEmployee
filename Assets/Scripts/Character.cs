@@ -35,7 +35,32 @@ public class Character: MonoBehaviour {
 
         if (_isoTransform.Position == path[nextPoint]) {
 			nextPoint = (nextPoint + 1) % path.Length;
-		}
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                Debug.Log("hit " + hit.transform.tag);
+                if (hit.transform.tag == "CharacterHitBox" && hit.transform == transform)
+                {
+                    GameState gameState = GameObject.Find("GameState").GetComponent("GameState") as GameState;
+                    if (gameState == null)
+                    {
+                        Debug.Log("Cannot find GameState in scene");
+                    }
+
+                    if (gameState != null && !gameState.firstPersonInfected)
+                    {
+                        gameState.SendMessage("InfectFirstPerson");
+                        SendMessage("Infect", false);
+                    }
+                }
+            }
+        }
 	}
 
 	public void Infect(bool force=false) {
