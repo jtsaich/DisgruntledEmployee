@@ -6,18 +6,20 @@ using Assets.UltimateIsometricToolkit.Scripts.Core;
 public class Character: MonoBehaviour {
 	public GameObject AreaOfEffectPrefab;
 	public float moveSpeed = 2f;
+    public float infectDuration = 10f;
 	public float infectRadius = 5f;
-	public float infectShrink = 0.01f;
 	public bool infected = false;
 
 	private int nextPoint = 0;
 	private Vector3[] path;
     private IsoTransform _isoTransform;
+    private GameState _gameState;
 	private GameObject aoeGO = null;
 	private AreaOfEffect aoeScript;
 
     void Awake() {
         _isoTransform = this.GetOrAddComponent<IsoTransform>();
+        _gameState = GameObject.Find("GameState").GetComponent<GameState>();
     }
 
 	void Start() {
@@ -37,6 +39,11 @@ public class Character: MonoBehaviour {
 			nextPoint = (nextPoint + 1) % path.Length;
         }
 
+        if (infected && infectDuration > 0)
+        {
+            infectDuration -= Time.deltaTime;
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hit;
@@ -47,15 +54,14 @@ public class Character: MonoBehaviour {
                 Debug.Log("hit " + hit.transform.tag);
                 if (hit.transform.tag == "CharacterHitBox" && hit.transform == transform)
                 {
-                    GameState gameState = GameObject.Find("GameState").GetComponent("GameState") as GameState;
-                    if (gameState == null)
+                    if (_gameState == null)
                     {
                         Debug.Log("Cannot find GameState in scene");
                     }
 
-                    if (gameState != null && !gameState.firstPersonInfected)
+                    if (_gameState != null && !_gameState.firstCharacterInfected)
                     {
-                        gameState.SendMessage("InfectFirstPerson");
+                        _gameState.SendMessage("InfectFirstCharacter");
                         SendMessage("Infect", false);
                     }
                 }
@@ -68,9 +74,14 @@ public class Character: MonoBehaviour {
 			infected = true;
 			aoeGO = GameObject.Instantiate(AreaOfEffectPrefab);
 			aoeScript = aoeGO.GetComponent<AreaOfEffect>();
-			aoeScript.Initialize(infectRadius, infectShrink);
+            aoeScript.Initialize(infectRadius, infectDuration);
 			aoeGO.transform.parent = this.transform;
 			aoeGO.transform.localPosition = new Vector3(0, -0.5f, 0);
+
+            if (_gameState != null)
+            {
+                _gameState.SendMessage("SetLastCharacterInfected", gameObject);
+            }
 		}
 	}
 

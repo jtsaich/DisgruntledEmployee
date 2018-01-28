@@ -4,19 +4,29 @@ using UnityEngine;
 
 public class GameState : MonoBehaviour {
 
-    public bool firstPersonInfected;
+    public bool firstCharacterInfected;
+
+    public void InfectFirstCharacter() {
+        firstCharacterInfected = true;
+    }
 
     [SerializeField]
-    private GameObject lastPersonInfected;
-    public GameObject LastPersonInfected { get; set; }
-
-    public void InfectFirstPerson() {
-        firstPersonInfected = true;
+    private GameObject lastCharacterInfected;
+    public void SetLastCharacterInfected(GameObject lastCharacterInfected) {
+        this.lastCharacterInfected = lastCharacterInfected;
     }
+
 
     public bool bombTriggered = false;
 
-    public void TriggerBomb() {
-        bombTriggered = true;
+    void Update () {
+        if (lastCharacterInfected != null)
+        {
+            if (lastCharacterInfected.GetComponent<Character>().infectDuration < 0)
+            {
+                bombTriggered = true;
+            }
+
+        }
     }
 }
