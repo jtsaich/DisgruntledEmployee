@@ -152,7 +152,7 @@ MonoBehaviour:
     type: 2}
   moveSpeed: 5
   infectDuration: 5
-  infectRadius: 5
+  infectRadius: 6.5
   infected: 0
   _direction: 0
 --- !u!114 &114910991218591770
