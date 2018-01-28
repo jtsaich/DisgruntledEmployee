@@ -34,7 +34,7 @@ public class Explodable : MonoBehaviour {
 		if (currentSprite != 1) {
 			SetSprite(1);
 			if (_gameState) {
-				_gameState.damage += worth;
+				_gameState.addDamage(worth);
 			}
 		}
 	}
