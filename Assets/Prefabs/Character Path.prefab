@@ -50,7 +50,7 @@ GameObject:
   m_IsActive: 1
 --- !u!4 &4794979429347038
 Transform:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1218075518263352}
@@ -150,12 +150,11 @@ MonoBehaviour:
     type: 2}
   BlastPrefab: {fileID: 1461706226355028, guid: fdeabcb422ae24f25ac36dad74421e96,
     type: 2}
-  explosionPrefab: {fileID: 1730937845039648, guid: 2cb8ab095ce2a46b08592ad29d756d5a,
-    type: 2}
   moveSpeed: 5
-  infectDuration: 3
+  infectDuration: 5
   infectRadius: 5
   infected: 0
+  _direction: 0
 --- !u!114 &114910991218591770
 MonoBehaviour:
   m_ObjectHideFlags: 1
