@@ -7,6 +7,10 @@ public class GameState : MonoBehaviour {
     public bool firstPersonInfected = false;
     public bool FirstPersonInfected { get; }
 
+    [SerializeField]
+    private GameObject lastPersonInfected;
+    public GameObject LastPersonInfected { get; set; }
+
     public void InfectFirstPerson() {
         firstPersonInfected = true;
     }

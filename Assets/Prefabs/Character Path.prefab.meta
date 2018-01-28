@@ -1,11 +1,6 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/Prefabs/Character Path.prefab.meta
 guid: b753e340243a2f34e8d9910b2a2c9cc2
 timeCreated: 1517091756
-=======
-guid: 1b4d1b303e0fb47fb8fd5d951883761c
-timeCreated: 1517094531
->>>>>>> 1c42b7fb8e36b316d203d5e1cc639c3d635955de:Assets/Prefabs/Character Path.prefab.meta
 licenseType: Free
 NativeFormatImporter:
   externalObjects: {}
