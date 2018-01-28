@@ -15,17 +15,26 @@ public class Character: MonoBehaviour {
 	private Vector3[] path;
     private IsoTransform _isoTransform;
     private GameState _gameState;
+	private SoundManager soundManager;
 	private GameObject aoeGO = null;
 	private AreaOfEffect aoeScript;
     private Blast _blast;
-	private GameObject blastGO;
+    private GameObject blastGO;
+
+    [SerializeField]
+    private int _direction;
+
+    private Animator animator;
 
     void Awake() {
         _isoTransform = this.GetOrAddComponent<IsoTransform>();
         _gameState = GameObject.Find("GameState").GetComponent<GameState>();
+		soundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
     }
 
 	void Start() {
+        animator = this.GetComponent<Animator>();
+
         path = GetComponentInParent<CharacterPath>().path;
 
 		blastGO = Instantiate(BlastPrefab, transform);
@@ -33,6 +42,7 @@ public class Character: MonoBehaviour {
 		blastGO.SetActive(false);
 		//nextPoint = Mathf.RoundToInt(Random.Range(0f, path.Length - 1));
 		_isoTransform.Position = path[nextPoint];
+
 
 		if (infected) {
 			this.Infect(true);
@@ -43,9 +53,32 @@ public class Character: MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.I)) {
 			Infect(true);
 		}
-        _isoTransform.Position = Vector3.MoveTowards(_isoTransform.Position, path[nextPoint], moveSpeed * Time.deltaTime);
 
+        _isoTransform.Position = Vector3.MoveTowards(_isoTransform.Position, path[nextPoint], moveSpeed * Time.deltaTime);
         if (_isoTransform.Position == path[nextPoint]) {
+            Vector3 direction = path[(nextPoint + 1) % path.Length] - path[nextPoint];
+            if (direction.x < 0)
+            {
+                _direction = 0;
+                animator.SetInteger("Direction", 0);
+            }
+            else if (direction.z < 0)
+            {
+                _direction = 3;
+                animator.SetInteger("Direction", 3);
+            }
+            else if (direction.x > 0)
+            {
+                _direction = 2;
+                animator.SetInteger("Direction", 2);
+            }
+            else if (direction.z > 0)
+            {
+                _direction = 1;
+                animator.SetInteger("Direction", 1);
+            }
+
+
 			nextPoint = (nextPoint + 1) % path.Length;
         }
 
@@ -101,7 +134,10 @@ public class Character: MonoBehaviour {
             foreach (GameObject gameObject in _blast.withinRadius) {
                 gameObject.GetComponent<Explodable>().Explode();
             }
-
+				
+			if (soundManager) {
+				soundManager.playExplosion();
+			}
 			Destroy(this.gameObject);
         }
     }
@@ -113,8 +149,8 @@ public class Character: MonoBehaviour {
 			aoeGO = null;
 		}
 		if (blastGO) {
-			blastGO = null;
 			Destroy(blastGO);
+			blastGO = null;
 		}
 	}
 }

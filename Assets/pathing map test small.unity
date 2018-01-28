@@ -2030,7 +2030,7 @@ Transform:
   - {fileID: 1132739696}
   - {fileID: 894549976}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &486546186 stripped
 Transform:
@@ -3140,6 +3140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstCharacterInfected: 0
+  text: {fileID: 0}
   lastCharacterInfected: {fileID: 0}
   bombTriggered: 0
 --- !u!4 &701548358
@@ -8668,6 +8669,10 @@ Prefab:
     - target: {fileID: 1900546378733108, guid: b753e340243a2f34e8d9910b2a2c9cc2, type: 2}
       propertyPath: m_Name
       value: Character Path (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1900546378733108, guid: b753e340243a2f34e8d9910b2a2c9cc2, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b753e340243a2f34e8d9910b2a2c9cc2, type: 2}

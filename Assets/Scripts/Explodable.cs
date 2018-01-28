@@ -13,6 +13,7 @@ public class Explodable : MonoBehaviour {
 	private GameObject spriteGO;
 	private IsoTransform isoTransform;
 	private GameState _gameState;
+	private SoundManager soundManager;
 
 	void Awake () {
 		spriteGO = new GameObject();
@@ -22,6 +23,7 @@ public class Explodable : MonoBehaviour {
 		spriteRenderer.sprite = sprites[currentSprite];
 		spriteRenderer.sortingOrder = 1;
 		_gameState = GameObject.Find("GameState").GetComponent<GameState>();
+		soundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
 	}
 
 	void Update() {
@@ -33,6 +35,10 @@ public class Explodable : MonoBehaviour {
 	public void Explode() {
 		if (currentSprite != 1) {
 			SetSprite(1);
+
+			if (soundManager) {
+				soundManager.playExplosion();
+			}
 			if (_gameState) {
 				_gameState.addDamage(worth);
 			}
