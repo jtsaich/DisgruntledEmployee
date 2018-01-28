@@ -10,6 +10,7 @@ public class GameState : MonoBehaviour {
 
     public bool firstCharacterInfected;
 	public Text text;
+    public GameObject clickToReplay;
 
     public void InfectFirstCharacter() {
         firstCharacterInfected = true;
@@ -65,14 +66,21 @@ public class GameState : MonoBehaviour {
             ResetScene();
 		}
 
-        if (bombTriggered)
+
+        if (endGameAfterBombTriggered <= 0)
         {
-            endGameAfterBombTriggered -= Time.deltaTime;
-            if (endGameAfterBombTriggered <= 0)
+            clickToReplay.SetActive(true);
+            if (Input.GetMouseButtonDown(0))
             {
                 ResetScene();
             }
         }
+
+        if (bombTriggered && endGameAfterBombTriggered > 0)
+        {
+            endGameAfterBombTriggered -= Time.deltaTime;
+        }
+
 
 		if (lastCharacterInfected != null && !bombTriggered)
         {
