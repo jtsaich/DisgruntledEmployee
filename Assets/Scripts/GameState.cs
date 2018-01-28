@@ -24,7 +24,11 @@ public class GameState : MonoBehaviour {
         {
             if (lastCharacterInfected.GetComponent<Character>().infectDuration < 0)
             {
-                bombTriggered = true;
+                if (!bombTriggered)
+                {
+                    bombTriggered = true;
+                    Debug.Log("BOOOOOOOOOM!");
+                }
             }
 
         }

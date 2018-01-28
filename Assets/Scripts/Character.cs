@@ -17,6 +17,7 @@ public class Character: MonoBehaviour {
 	private GameObject aoeGO = null;
 	private AreaOfEffect aoeScript;
 
+
     void Awake() {
         _isoTransform = this.GetOrAddComponent<IsoTransform>();
         _gameState = GameObject.Find("GameState").GetComponent<GameState>();
@@ -72,11 +73,10 @@ public class Character: MonoBehaviour {
 	public void Infect(bool force=false) {
 		if (force || !infected) {
 			infected = true;
-			aoeGO = GameObject.Instantiate(AreaOfEffectPrefab);
+            aoeGO = Instantiate(AreaOfEffectPrefab, transform);
+            aoeGO.transform.position -= new Vector3(0, 0.5f, 0);
 			aoeScript = aoeGO.GetComponent<AreaOfEffect>();
             aoeScript.Initialize(infectRadius, infectDuration);
-			aoeGO.transform.parent = this.transform;
-			aoeGO.transform.localPosition = new Vector3(0, -0.5f, 0);
 
             if (_gameState != null)
             {
