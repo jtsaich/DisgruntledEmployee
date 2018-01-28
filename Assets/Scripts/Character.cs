@@ -18,6 +18,7 @@ public class Character: MonoBehaviour {
 	private GameObject aoeGO = null;
 	private AreaOfEffect aoeScript;
     private Blast _blast;
+	private GameObject blastGO;
 
     void Awake() {
         _isoTransform = this.GetOrAddComponent<IsoTransform>();
@@ -26,7 +27,10 @@ public class Character: MonoBehaviour {
 
 	void Start() {
         path = GetComponentInParent<CharacterPath>().path;
-        _blast = Instantiate(BlastPrefab, transform).GetComponent<Blast>();
+
+		blastGO = Instantiate(BlastPrefab, transform);
+		_blast = blastGO.AddComponent(typeof(Blast)) as Blast;
+		blastGO.SetActive(false);
 		//nextPoint = Mathf.RoundToInt(Random.Range(0f, path.Length - 1));
 		_isoTransform.Position = path[nextPoint];
 
@@ -79,6 +83,7 @@ public class Character: MonoBehaviour {
 	public void Infect(bool force=false) {
 		if (force || !infected) {
 			infected = true;
+			blastGO.SetActive(true);
             aoeGO = Instantiate(AreaOfEffectPrefab, transform);
 			aoeScript = aoeGO.GetComponent<AreaOfEffect>();
             aoeScript.Initialize(infectRadius, infectDuration);
@@ -104,6 +109,10 @@ public class Character: MonoBehaviour {
 		if (aoeGO != null) {
 			Destroy(aoeGO);
 			aoeGO = null;
+		}
+		if (blastGO) {
+			blastGO = null;
+			Destroy(blastGO);
 		}
 	}
 }
