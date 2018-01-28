@@ -9,13 +9,13 @@ public class Blast : MonoBehaviour {
 
     void OnTriggerEnter(Collider collider) {
         if (collider.gameObject.tag == "Explodable") {
-            withinRadius.Add(gameObject);
+            withinRadius.Add(collider.gameObject);
         }
     }
 
     void OnTriggerExit(Collider collider) {
         if (collider.gameObject.tag == "Explodable") {
-            withinRadius.Remove(gameObject);
+            withinRadius.Remove(collider.gameObject);
         }
     }
 }
