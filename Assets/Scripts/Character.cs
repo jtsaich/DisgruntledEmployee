@@ -87,7 +87,7 @@ public class Character: MonoBehaviour {
             infectDuration -= Time.deltaTime;
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (_gameState.gameStarted && Input.GetMouseButtonDown(0))
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

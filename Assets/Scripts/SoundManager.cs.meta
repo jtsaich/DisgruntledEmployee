@@ -1,11 +1,15 @@
 fileFormatVersion: 2
 guid: 3a77d3a7b936947c196c3c5b54bd3871
-timeCreated: 1517118270
+timeCreated: 1517121167
 licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - explosionPrefab: {fileID: 1730937845039648, guid: 2cb8ab095ce2a46b08592ad29d756d5a,
+      type: 2}
+  - musicPrefab: {fileID: 1956022415048952, guid: 3e8d6b5f7104a47399300014a68fefb0,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
