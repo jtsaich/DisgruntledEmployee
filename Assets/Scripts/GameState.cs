@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class GameState : MonoBehaviour {
 
     public bool gameStarted;
+	public GameObject instructions;
+	public GameObject[] instructionPanes;
 
     public bool firstCharacterInfected;
 	public Text text;
@@ -44,6 +46,15 @@ public class GameState : MonoBehaviour {
         gameStarted = true;
         _menu.SetActive(false);
     }
+
+	public void ShowInstructionsPane(int pane = 0) {
+		instructions.SetActive(true);
+
+		for (int i = 0; i < instructionPanes.Length; i++) {
+			instructionPanes[i].SetActive(false);
+		}
+		instructionPanes[pane].SetActive(true);
+	}
 
 	public void addDamage(int damage) {
 		updateDamage(this.damage + damage);

@@ -141,6 +141,10 @@ public class Character: MonoBehaviour {
 			aoeScript = aoeGO.GetComponent<AreaOfEffect>();
             aoeScript.Initialize(infectRadius, infectDuration);
 
+			if (soundManager) {
+				soundManager.playInfection();
+			}
+
             if (_gameState != null)
             {
                 _gameState.SendMessage("SetLastCharacterInfected", gameObject);
