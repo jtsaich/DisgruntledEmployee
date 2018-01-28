@@ -178,7 +178,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Objective: $21500'
+  m_Text: 'Objective: $18500'
 --- !u!114 &114743475264279604
 MonoBehaviour:
   m_ObjectHideFlags: 1
