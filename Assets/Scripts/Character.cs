@@ -34,6 +34,9 @@ public class Character: MonoBehaviour {
 	}
 
 	void Update () {
+		if (Input.GetKeyDown(KeyCode.I)) {
+			Infect(true);
+		}
         _isoTransform.Position = Vector3.MoveTowards(_isoTransform.Position, path[nextPoint], moveSpeed * Time.deltaTime);
 
         if (_isoTransform.Position == path[nextPoint]) {

@@ -16,7 +16,7 @@ public class GameState : MonoBehaviour {
         this.lastCharacterInfected = lastCharacterInfected;
     }
 
-
+	public int damage = 0;
     public bool bombTriggered = false;
 
     void Update () {
