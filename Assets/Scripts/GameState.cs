@@ -28,6 +28,15 @@ public class GameState : MonoBehaviour {
                 {
                     bombTriggered = true;
                     Debug.Log("BOOOOOOOOOM!");
+
+                    GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("CharacterHitBox");
+                    foreach (GameObject gameObject in gameObjects) {
+                        Character character = gameObject.GetComponent<Character>();
+                        if (character != null && character.infected)
+                        {
+                            character.Explode();
+                        }
+                    }
                 }
             }
 
