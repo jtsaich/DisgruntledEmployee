@@ -380,13 +380,19 @@ Prefab:
     - target: {fileID: 114375789236900402, guid: b753e340243a2f34e8d9910b2a2c9cc2,
         type: 2}
       propertyPath: infected
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114375789236900402, guid: b753e340243a2f34e8d9910b2a2c9cc2,
         type: 2}
       propertyPath: infectDuration
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114375789236900402, guid: b753e340243a2f34e8d9910b2a2c9cc2,
+        type: 2}
+      propertyPath: ExplosionPrefab
+      value: 
+      objectReference: {fileID: 1967150045086366, guid: f6bde262119ee426584c9405a4e8d596,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b753e340243a2f34e8d9910b2a2c9cc2, type: 2}
   m_IsPrefabParent: 0
