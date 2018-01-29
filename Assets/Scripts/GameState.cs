@@ -186,9 +186,10 @@ public class GameState : MonoBehaviour {
 //            scoreItem.transform.localScale = new Vector3(3, 3, 1);
             RectTransform trans = scoreItem.AddComponent<RectTransform>();
             trans.localPosition = new Vector3(x, y, 0);
+            trans.sizeDelta = new Vector2(40, 40);
 
-            trans.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 40);
-            trans.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 40);
+//            trans.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 40);
+//            trans.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 40);
             Image image = scoreItem.AddComponent<Image>();
             image.sprite = entry.Key;
 
@@ -196,8 +197,7 @@ public class GameState : MonoBehaviour {
             RectTransform txtTrans = text.AddComponent<RectTransform>();
             txtTrans.parent = scoreItem.transform;
             txtTrans.localPosition = new Vector3(90, 0, 0);
-            txtTrans.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 40);
-            txtTrans.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 120);
+            txtTrans.sizeDelta = new Vector2(120, 40);
 
             Text t = text.AddComponent<Text>();
             t.text = "$" + entry.Value;
