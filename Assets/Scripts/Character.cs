@@ -161,6 +161,8 @@ public class Character: MonoBehaviour {
         if (infected)
         {
             foreach (GameObject gameObject in _blast.withinRadius) {
+                _gameState.damagedObjects.Add(gameObject);
+
                 gameObject.GetComponent<Explodable>().Explode();
             }
 

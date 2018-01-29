@@ -13,6 +13,8 @@ public class GameState : MonoBehaviour {
     public bool firstCharacterInfected;
 	public Text text;
     public GameObject clickToReplay;
+    public GameObject finalScores;
+    public Font font;
 
     public void InfectFirstCharacter() {
         firstCharacterInfected = true;
@@ -26,6 +28,8 @@ public class GameState : MonoBehaviour {
 
     [SerializeField]
 	private int damage = 0;
+
+    public List<GameObject> damagedObjects = new List<GameObject>();
 
     [SerializeField]
     private bool bombTriggered = false;
@@ -80,6 +84,11 @@ public class GameState : MonoBehaviour {
 
         if (endGameAfterBombTriggered <= 0)
         {
+            if (!finalScores.activeSelf)
+            {
+                ShowScore();
+            }
+
             clickToReplay.SetActive(true);
             if (Input.GetMouseButtonDown(0))
             {
@@ -115,5 +124,78 @@ public class GameState : MonoBehaviour {
 
     public void ResetScene() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void ShowScore() {
+        finalScores.SetActive(true);
+       
+        IDictionary<Sprite, int> dict = new Dictionary<Sprite, int>();
+        foreach (GameObject gameObject in damagedObjects) {
+            Explodable e = gameObject.GetComponent<Explodable>();
+
+            if (e != null)
+            {
+                Sprite sprite = e.sprites[1];
+                if (!dict.ContainsKey(sprite))
+                {
+                    dict[sprite] = e.worth;
+                }
+                else
+                {
+                    dict[sprite] = dict[sprite] + e.worth;
+                }
+
+
+            }
+        }
+
+
+        float x = -300;
+        float y = 120;
+
+        float dx = 200;
+        float dy = -70;
+
+
+        int i = 0;
+        foreach (KeyValuePair<Sprite, int> entry in dict)
+        {
+            if (i > 3)
+            {
+                i = 0;
+                y = 120;
+                x += dx;
+            }
+
+            GameObject scoreItem = new GameObject();
+            scoreItem.transform.parent = finalScores.transform;
+//            scoreItem.transform.localPosition = 
+//            scoreItem.transform.localScale = new Vector3(3, 3, 1);
+            RectTransform trans = scoreItem.AddComponent<RectTransform>();
+            trans.localPosition = new Vector3(x, y, 0);
+
+            trans.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 40);
+            trans.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 40);
+            Image image = scoreItem.AddComponent<Image>();
+            image.sprite = entry.Key;
+
+            GameObject text = new GameObject();
+            RectTransform txtTrans = text.AddComponent<RectTransform>();
+            txtTrans.parent = scoreItem.transform;
+            txtTrans.localPosition = new Vector3(90, 0, 0);
+            txtTrans.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 40);
+            txtTrans.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 120);
+
+            Text t = text.AddComponent<Text>();
+            t.text = "$" + entry.Value;
+            t.font = font;
+            t.fontSize = 20;
+            t.color = Color.black;
+            t.alignment = TextAnchor.MiddleLeft;
+
+            y += dy;
+
+            i++;
+        }
     }
 }
