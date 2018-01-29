@@ -6,9 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class GameState : MonoBehaviour {
 
+	private static bool quickStart = false;
+
     public bool gameStarted;
 	public GameObject instructions;
 	public GameObject[] instructionPanes;
+	public GameObject shopperMessage;
 
     public bool firstCharacterInfected;
 	public Text text;
@@ -17,6 +20,7 @@ public class GameState : MonoBehaviour {
     public Font font;
 
     public void InfectFirstCharacter() {
+		shopperMessage.SetActive(false);
         firstCharacterInfected = true;
     }
 
@@ -44,10 +48,14 @@ public class GameState : MonoBehaviour {
 	void Start() {
         updateDamage(0);
         _menu = GameObject.Find("Menu");
+		if (GameState.quickStart) {
+			StartGame();
+		}
 	}
 
     public void StartGame() {
         gameStarted = true;
+		shopperMessage.SetActive(true);
         _menu.SetActive(false);
     }
 
@@ -58,6 +66,10 @@ public class GameState : MonoBehaviour {
 			instructionPanes[i].SetActive(false);
 		}
 		instructionPanes[pane].SetActive(true);
+	}
+
+	public void CloseInstructions() {
+		instructions.SetActive(false);
 	}
 
 	public void addDamage(int damage) {
@@ -92,7 +104,7 @@ public class GameState : MonoBehaviour {
             clickToReplay.SetActive(true);
             if (Input.GetMouseButtonDown(0))
             {
-                ResetScene();
+                ResetScene(true);
             }
         }
 
@@ -122,8 +134,9 @@ public class GameState : MonoBehaviour {
         }
     }
 
-    public void ResetScene() {
+	public void ResetScene(bool quickStart=false) {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		GameState.quickStart = quickStart;
     }
 
     public void ShowScore() {

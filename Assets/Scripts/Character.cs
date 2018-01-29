@@ -47,7 +47,7 @@ public class Character: MonoBehaviour {
 		blastGO = Instantiate(BlastPrefab, transform);
 		_blast = blastGO.AddComponent(typeof(Blast)) as Blast;
 		blastGO.SetActive(false);
-		//nextPoint = Mathf.RoundToInt(Random.Range(0f, path.Length - 1));
+		nextPoint = Mathf.RoundToInt(Random.Range(0f, path.Length - 1));
 		_isoTransform.Position = path[nextPoint];
 
 
