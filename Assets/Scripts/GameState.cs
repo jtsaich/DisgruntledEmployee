@@ -64,6 +64,10 @@ public class GameState : MonoBehaviour {
 		instructionPanes[pane].SetActive(true);
 	}
 
+	public void CloseInstructions() {
+		instructions.SetActive(false);
+	}
+
 	public void addDamage(int damage) {
 		updateDamage(this.damage + damage);
 	}
